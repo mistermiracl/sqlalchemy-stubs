@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any, Optional, TypeVar
 from . import strategies
 from . import attributes
 from .query import Query as Query
@@ -44,7 +44,9 @@ class AppenderMixin(object):
     def append(self, item): ...
     def remove(self, item): ...
 
-class AppenderQuery(AppenderMixin, Query): ...
+T = TypeVar('T')
+
+class AppenderQuery(AppenderMixin, Query[T]): ...
 
 def mixin_user_query(cls): ...
 
